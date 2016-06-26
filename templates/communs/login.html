@@ -1,0 +1,31 @@
+$def with (error)
+
+$if error:
+    <font color="red"><b>$error</b></font>
+
+
+<form action="/login" method="POST">
+    <table id="login">
+        <tr>
+            <td>User: </td>
+            <td><input type="text" name="user"></td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td><input type="password" name="passwd"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="LOGIN"></td>
+        </tr>
+    </table>
+</form>
+
+<form action="/register" method="GET">
+    <table id="login">
+        <tr>
+            <td></td>
+            <td><input type="submit" value="REGISTER"></td>
+        </tr>
+    </table>
+</form>
