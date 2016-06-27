@@ -55,12 +55,13 @@ class Login:
                 set_session_atr('login', 1)
                 set_session_atr('privilege', ident['privilege'])
                 render = create_render(session_atr('privilege'))
-                return render.login_ok()
+                return render.login_double()
             else:
                 set_session_atr('login', 0)
                 set_session_atr('privilege', 0)
                 render = create_render(session_atr('privilege'))
-                return render.login_error()
+                error = 'Incorrect password, try again'
+                return render.login(error)
         except:
             set_session_atr('login', 0)
             set_session_atr('privilege', 0)
@@ -74,7 +75,7 @@ class Reset:
         set_session_atr('login', 0)
         session.kill
         render = create_render(session_atr('privilege'))
-        return render.logout()
+        return render.login('')
 if __name__ == "__main__":
     app = web.application(urls, globals())
     app.run()
