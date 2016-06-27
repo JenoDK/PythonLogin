@@ -26,6 +26,7 @@ class Register:
     def POST(self):
         f = register_form()
         if not f.validates():
+            render = web.template.render('templates/')
             return render.register(f)
         else:
             user, email, password = web.input().username, web.input().email, web.input().password

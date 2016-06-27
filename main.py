@@ -49,8 +49,8 @@ class Login:
             return '%s' % render.login('')
     def POST(self):
         name, passwd = web.input().user, web.input().passwd
-        ident = db.select('example_users', where='user=$name', vars=locals())[0]
         try:
+            ident = db.select('example_users', where='user=$name', vars=locals())[0]
             if hashlib.sha1("sAlT754-"+passwd).hexdigest() == ident['user_password']:
                 set_session_atr('login', 1)
                 set_session_atr('privilege', ident['privilege'])
