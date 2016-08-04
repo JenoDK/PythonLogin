@@ -5,13 +5,14 @@ from main import *
 
 vpass = form.regexp(r".{3,20}$", 'must be between 3 and 20 characters')
 vemail = form.regexp(r".*@.*", "must be a valid email address")
+vNotNull = form.notnull
 
 register_form = form.Form(
-    form.Textbox("username", description="Username"),
-    form.Textbox("email", vemail, description="E-Mail"),
-    form.Password("password", vpass, description="Password"),
-    form.Password("password2", description="Repeat password"),
-    form.Button("submit", type="submit", description="Register"),
+    form.Textbox("firstName", vNotNull, description="First name"),
+    form.Textbox("lastName", vNotNull, description="Last name"),
+    form.Textbox("email", vemail, vNotNull, description="E-Mail"),
+    form.Password("password", vpass, vNotNull, description="Password"),
+    form.Password("password2", vNotNull, description="Repeat password"),
     validators = [
         form.Validator("Passwords did't match", lambda i: i.password == i.password2)]
 

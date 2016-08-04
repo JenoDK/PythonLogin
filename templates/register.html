@@ -29,21 +29,26 @@ $def with(form)
         <div id="signup">
           <h1>Sign Up for Free</h1>
 
-          <form action="/" method="post">
+          <form action="/register" method="post">
 
           <div class="top-row">
             <div class="field-wrap">
               <label>
                 First Name<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" />
+              $:form.firstName.render()
+              $if not form.valid: $if not form.firstName.validate(form.firstName.value):<font color="red"><b>First/Last name can not be empty</b></font>
+
+
             </div>
 
             <div class="field-wrap">
               <label>
                 Last Name<span class="req">*</span>
               </label>
-              <input type="text"required autocomplete="off"/>
+              $:form.lastName.render()
+              $if not form.valid: $if not form.lastName.validate(form.lastName.value):<font color="red"><b>First/Last name can not be empty</b></font>
+
             </div>
           </div>
 
@@ -51,14 +56,27 @@ $def with(form)
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off"/>
+            $:form.email.render()
+            $if not form.valid: $if not form.email.validate(form.email.value):<font color="red"><b>Must be a valid email</b></font>
+
           </div>
 
           <div class="field-wrap">
             <label>
               Set A Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            $:form.password.render()
+            $if not form.valid: $if not form.password.validate(form.password.value):<font color="red"><b>Password can not be empty</b></font>
+
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Repeat password<span class="req">*</span>
+            </label>
+            $:form.password2.render()
+            $if not form.valid: $if not form.password2.validate(form.password2.value):<font color="red"><b>Must be the same password</b></font>
+
           </div>
 
           <button type="submit" class="button button-block"/>Get Started</button>
